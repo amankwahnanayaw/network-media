@@ -7,7 +7,7 @@ class User(AbstractUser):
 
 
 class Post(models.Model):
-    content = models.CharField(max_lenght=140)
+    content = models.CharField(max_length=140)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="author")
     date = models.DateTimeField(auto_now_add=True)

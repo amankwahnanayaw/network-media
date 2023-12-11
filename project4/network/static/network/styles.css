@@ -1,0 +1,12 @@
+.all-posts{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 20px;
+}
+
+
+.post{
+    border: 0.1px solid gray;
+    box-sizing: border-box;
+}
