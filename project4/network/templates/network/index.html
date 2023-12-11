@@ -14,7 +14,7 @@
         </div>
     {% endif %}
     <div class="all-posts">
-        {% for post in allPost %}
+        {% for post in post_on_the_page %}
             <div class="post">
                 <h5 class="username">@{{ post.user }}</h5>
                 <h6 class="content">{{ post.content }}</h6>
