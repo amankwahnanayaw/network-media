@@ -3,14 +3,22 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from .models import User, Post
 
 
 def index(request):
     allPost = Post.objects.all().order_by("id").reverse()
+
+    # paginator
+    paginator = Paginator(allPost, 10)
+    page_number = request.Get.get('page')
+    posts_on_the_page = paginator.get_page(page_number)
+
     return render(request, "network/index.html", {
-        "allPost": allPost
+        "allPost": allPost,
+        "posts_on_the_page": posts_on_the_page
     })
 
 
