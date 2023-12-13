@@ -31,6 +31,10 @@ def newPost(request):
         return HttpResponseRedirect(reverse(index))
 
 
+def profile(request, user_id):
+    return
+
+
 def login_view(request):
     if request.method == "POST":
 
