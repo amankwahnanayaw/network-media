@@ -37,6 +37,18 @@ def profile(request, user_id):
 
     following = Follow.objects.filter(user=user)
     followers = Follow.objects.filter(user_follower=user)
+
+    try:
+        checkFollow = followers.filter(user=User.object.get(pk=user.id))
+        if checkFollow != 0:
+            isFollowing = True
+
+        else:
+            isFollowing = False
+
+    except:
+        isFollowing = False
+
     # paginator
     paginator = Paginator(allPost, 10)
     page_number = request.Get.get('page')
@@ -47,7 +59,9 @@ def profile(request, user_id):
         "posts_on_the_page": posts_on_the_page,
         "username": user.username,
         "following": following,
-        "followers": followers
+        "followers": followers,
+        "isFollowing": isFollowing,
+        "user_profile": user
     })
 
 
