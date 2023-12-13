@@ -42,7 +42,8 @@ def profile(request, user_id):
 
     return render(request, "network/profile.html", {
         "allPost": allPost,
-        "posts_on_the_page": posts_on_the_page
+        "posts_on_the_page": posts_on_the_page,
+        "username": user.username
     })
 
 
