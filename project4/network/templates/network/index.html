@@ -16,7 +16,7 @@
     <div class="all-posts">
         {% for post in post_on_the_page %}
             <div class="post">
-                <h5 class="username">@{{ post.user }}</h5>
+                <h5 class="username"><a href="{% url 'profile' user_id=post.user.id %}">@{{ post.user }}</a></h5>
                 <h6 class="content">{{ post.content }}</h6>
                 <p class="date">{{ post.date }}</p>
             </div>
