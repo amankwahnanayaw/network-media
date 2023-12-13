@@ -32,7 +32,18 @@ def newPost(request):
 
 
 def profile(request, user_id):
-    return
+    user = User.objects.get(pk=user_id)
+    allPost = Post.objects.filter(user=user).order_by("id").reverse()
+
+    # paginator
+    paginator = Paginator(allPost, 10)
+    page_number = request.Get.get('page')
+    posts_on_the_page = paginator.get_page(page_number)
+
+    return render(request, "network/profile.html", {
+        "allPost": allPost,
+        "posts_on_the_page": posts_on_the_page
+    })
 
 
 def login_view(request):
