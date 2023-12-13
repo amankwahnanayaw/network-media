@@ -75,6 +75,16 @@ def follow(request):
     return HttpResponseRedirect(reverse(profile, kwargs={"user_id": user_id}))
 
 
+def unfollow(request):
+    userFollow = request.POST['userFollow']
+    currentUser = User.objects.get(pk=request.user.id)
+    userFollowData = User.object.get(username=userFollow)
+    f = Follow.objects.get(user=currentUser, userFollow=userFollowData)
+    f.remove()
+    user_id = userFollowData.id
+    return HttpResponseRedirect(reverse(profile, kwargs={"user_id": user_id}))
+
+
 def login_view(request):
     if request.method == "POST":
 
