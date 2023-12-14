@@ -66,6 +66,28 @@ def profile(request, user_id):
     })
 
 
+def following(request):
+    currentUser = User.objects.get(pk=request.user.id)
+    followingPeople = Follow.objects.filter(user=currentUser)
+    allPosts = Post.objects.all().order_by('id').reverse()
+
+    followingPosts = []
+
+    for post in allPosts:
+        for person in followingPeople:
+            if person.userfollower == post.user:
+                followingPosts.append(post)
+
+    # paginator
+    paginator = Paginator(followingPosts, 10)
+    page_number = request.GET.get('page')
+    posts_on_the_page = paginator.get_page(page_number)
+
+    return render(request, "network/followin.html", {
+        "posts_on_the_page": posts_on_the_page
+    })
+
+
 def follow(request):
     userFollow = request.POST['userFollow']
     currentUser = User.objects.get(pk=request.user.id)
