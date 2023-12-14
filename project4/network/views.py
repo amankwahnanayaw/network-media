@@ -13,7 +13,7 @@ def index(request):
 
     # paginator
     paginator = Paginator(allPost, 10)
-    page_number = request.Get.get('page')
+    page_number = request.GET.get('page')
     posts_on_the_page = paginator.get_page(page_number)
 
     return render(request, "network/index.html", {
@@ -39,8 +39,9 @@ def profile(request, user_id):
     followers = Follow.objects.filter(user_follower=user)
 
     try:
-        checkFollow = followers.filter(user=User.object.get(pk=user.id))
-        if checkFollow != 0:
+        checkFollow = followers.filter(
+            user=User.object.get(pk=request.user.id))
+        if len(checkFollow) != 0:
             isFollowing = True
 
         else:
@@ -51,7 +52,7 @@ def profile(request, user_id):
 
     # paginator
     paginator = Paginator(allPost, 10)
-    page_number = request.Get.get('page')
+    page_number = request.GET.get('page')
     posts_on_the_page = paginator.get_page(page_number)
 
     return render(request, "network/profile.html", {
@@ -68,8 +69,8 @@ def profile(request, user_id):
 def follow(request):
     userFollow = request.POST['userFollow']
     currentUser = User.objects.get(pk=request.user.id)
-    userFollowData = User.object.get(username=userFollow)
-    f = Follow(user=currentUser, user_Follower=userFollowData)
+    userFollowData = User.objects.get(username=userFollow)
+    f = Follow(user=currentUser, user_follower=userFollowData)
     f.save()
     user_id = userFollowData.id
     return HttpResponseRedirect(reverse(profile, kwargs={"user_id": user_id}))
@@ -78,7 +79,7 @@ def follow(request):
 def unfollow(request):
     userFollow = request.POST['userFollow']
     currentUser = User.objects.get(pk=request.user.id)
-    userFollowData = User.object.get(username=userFollow)
+    userFollowData = User.objects.get(username=userFollow)
     f = Follow.objects.get(user=currentUser, user_Follower=userFollowData)
     f.remove()
     user_id = userFollowData.id
