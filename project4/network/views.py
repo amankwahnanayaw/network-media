@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
+import json
 
 from .models import User, Post, Follow
 
@@ -29,6 +30,13 @@ def newPost(request):
         post = Post(content=content, user=user)
         post.save()
         return HttpResponseRedirect(reverse(index))
+
+
+def edit(request, post_id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        edit_post = Post.objects.get(pk=post_id)
+        edit_post.content = data
 
 
 def profile(request, user_id):

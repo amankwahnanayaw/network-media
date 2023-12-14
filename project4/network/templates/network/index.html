@@ -1,6 +1,14 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
+<script>
+    function submitHandler(id) {
+        const textareaValue = document.getElementById(`textarea_${id}`).value
+        console.log(textareaValue)
+    }
+</script>
+
+
     <h1 class="mx-1">All Posts</h1>
     {% if user.is_authenticated %}
         <div class="my-3 mx-4">
@@ -36,7 +44,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary" >Save changes</button>
+                                  <button type="button" class="btn btn-primary" onclick=`submitHandler({{ post.id }})`>Save changes</button>
                                 </div>
                               </div>
                             </div>
