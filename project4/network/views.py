@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 import json
 from django.http import JsonResponse
 
-from .models import User, Post, Follow
+from .models import User, Post, Follow, Like
 
 
 def index(request):
@@ -17,6 +17,17 @@ def index(request):
     paginator = Paginator(allPost, 10)
     page_number = request.GET.get('page')
     posts_on_the_page = paginator.get_page(page_number)
+
+    allLikes = Like.objects.all()
+
+    whoYouLike = []
+
+    try:
+        for like in allLikes:
+            if like.user.id == request.user.id:
+                whoYouLike.append(like.post.id)
+    except:
+        whoYouLike = []
 
     return render(request, "network/index.html", {
         "allPost": allPost,
