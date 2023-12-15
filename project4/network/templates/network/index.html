@@ -40,6 +40,11 @@
 
 
     function likeHandler(id, whoYouLike) {
+        const btn = document.getElementById(`${id}`);
+
+        btn.classList.remove('fa-thumbs-up')
+        btn.classList.remove('fa-thumbs-down')
+
         if(whoYouLike.indexOf(id) >= 0){
             var liked = true;
         } else {
@@ -47,10 +52,19 @@
         }
 
         if(liked === true){
-
+            fetch(`/remove_like/${id}`)
+            .then(response => response.json)
+            .then(result => {
+                btn.classList.add('fa-thumbs-up')
+            })
         } else {
-
+            fetch(`/add_like/${id}`)
+            .then(response => response.json)
+            .then(result => {
+                btn.classList.add('fa-thumbs-up')
+            })
         }
+        liked = !liked
     }
 </script>
 
