@@ -59,6 +59,10 @@ def remove_like(request, post_id):
 
 
 def add_like(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    user = User.objects.get(pk=request.user.id)
+    newLike = Like(user=user, post=post)
+    newLike.save()
     return
 
 
