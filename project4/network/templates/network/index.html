@@ -80,6 +80,11 @@
                               </div>
                             </div>
                           </div>
+                    {% else %}
+                          {% if post.id in whoYouLike %}
+                          <!-- this means we already liked the post-->
+                          {% else %}
+                          {% endif %}
                     {% endif %}
                 {% endif %}
             </div>

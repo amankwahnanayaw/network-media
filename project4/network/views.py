@@ -31,7 +31,8 @@ def index(request):
 
     return render(request, "network/index.html", {
         "allPost": allPost,
-        "posts_on_the_page": posts_on_the_page
+        "posts_on_the_page": posts_on_the_page,
+        "whoYouLike": whoYouLike
     })
 
 
