@@ -10,6 +10,8 @@
 
     function submitHandler(id) {
         const textareaValue = document.getElementById(`textarea_${id}`).value
+        const content = document.getElementById(`content_${id}`);
+        const modal = document.getElementById(`modal_edit_post_${id}`);
         fetch(`/edit/${id}`, {
             method: "POST",
             headers: {"content-type": "application/json", "X-CSRFToken": getCookie("csrftoken")},
@@ -18,9 +20,22 @@
             })
         })
         .then(response => response.json())
-        .then(result => 
-            console.log(result)
-        )
+        .then(result => {
+            content.innerHTML = result.data;
+            // on every modal change state like in hidden modal
+            modals.classList.remove('show');
+            modals.setAttribute('arial-hidden', 'true');
+            modals.setAttribute('style', 'display: none');
+
+            // get modal backdrops
+            const modalsBackdrops = document.getElementByClassName('modal-backdrop');
+
+            // remove every modal backdrop
+            for(let i=0; i<modalsBackdrops; i++) {
+                document.body.removeChild(modalsBackdrops)
+            }
+
+        })
     }
 </script>
 
