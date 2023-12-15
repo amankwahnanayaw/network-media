@@ -54,6 +54,14 @@ def edit(request, post_id):
         return JsonResponse({"massage": "Change successful", "data": data["content"]})
 
 
+def remove_like(request, post_id):
+    return
+
+
+def add_like(request, post_id):
+    return
+
+
 def profile(request, user_id):
     user = User.objects.get(pk=user_id)
     allPost = Post.objects.filter(user=user).order_by("id").reverse()
