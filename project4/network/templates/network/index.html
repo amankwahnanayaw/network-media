@@ -37,6 +37,11 @@
 
         })
     }
+
+
+    function likeHandler(id, whoYouLike) {
+        console.log(id)
+    }
 </script>
 
 
@@ -83,7 +88,9 @@
                     {% else %}
                           {% if post.id in whoYouLike %}
                           <!-- this means we already liked the post-->
+                            <button class="btn btn-info fa fa-thumbs-down col-1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
                           {% else %}
+                            <button class="btn btn-info fa fa-thumbs-up col-1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
                           {% endif %}
                     {% endif %}
                 {% endif %}
