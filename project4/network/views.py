@@ -55,7 +55,11 @@ def edit(request, post_id):
 
 
 def remove_like(request, post_id):
-    return
+    post = Post.objects.get(pk=post_id)
+    user = User.objects.get(pk=post_id)
+    like = Like.objects.filter(post=post, user=user)
+    like.delete()
+    return JsonResponse({"message": "like removed"})
 
 
 def add_like(request, post_id):
@@ -63,7 +67,7 @@ def add_like(request, post_id):
     user = User.objects.get(pk=request.user.id)
     newLike = Like(user=user, post=post)
     newLike.save()
-    return
+    return JsonResponse({"message": "Like added!"})
 
 
 def profile(request, user_id):
