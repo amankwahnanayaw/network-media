@@ -39,7 +39,7 @@ def index(request):
 def newPost(request):
     if request.method == "POST":
         content = request.POST["content"]
-        user = User.object.get(pk=request.user.id)
+        user = User.objects.get(pk=request.user.id)
         post = Post(content=content, user=user)
         post.save()
         return HttpResponseRedirect(reverse(index))

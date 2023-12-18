@@ -73,7 +73,7 @@
     {% if user.is_authenticated %}
         <div class="my-3 mx-4">
             <h3>New Post</h3>
-            <form action="{% url 'newPost' %}">
+            <form action="{% url 'newPost' %}" method="post">
                 {% csrf_token %}
                 <textarea name="content" id="" cols="130" rows="4"></textarea>
                 <br>
