@@ -79,7 +79,7 @@ def profile(request, user_id):
 
     try:
         checkFollow = followers.filter(
-            user=User.object.get(pk=request.user.id))
+            user=User.objects.get(pk=request.user.id))
         if len(checkFollow) != 0:
             isFollowing = True
 
