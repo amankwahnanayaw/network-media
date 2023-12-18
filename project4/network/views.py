@@ -56,7 +56,7 @@ def edit(request, post_id):
 
 def remove_like(request, post_id):
     post = Post.objects.get(pk=post_id)
-    user = User.objects.get(pk=request.user.id)
+    user = User.objects.get(pk=post_id)
     like = Like.objects.filter(post=post, user=user)
     like.delete()
     return JsonResponse({"message": "like removed"})
