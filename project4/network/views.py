@@ -141,8 +141,8 @@ def unfollow(request):
     userFollow = request.POST['userFollow']
     currentUser = User.objects.get(pk=request.user.id)
     userFollowData = User.objects.get(username=userFollow)
-    f = Follow.objects.get(user=currentUser, user_Follower=userFollowData)
-    f.remove()
+    f = Follow.objects.get(user=currentUser, user_follower=userFollowData)
+    f.delete()
     user_id = userFollowData.id
     return HttpResponseRedirect(reverse(profile, kwargs={"user_id": user_id}))
 
