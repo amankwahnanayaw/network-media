@@ -61,7 +61,7 @@
             fetch(`/add_like/${id}`)
             .then(response => response.json)
             .then(result => {
-                btn.classList.add('fa-thumbs-up')
+                btn.classList.add('fa-thumbs-down')
             })
         }
         liked = !liked
