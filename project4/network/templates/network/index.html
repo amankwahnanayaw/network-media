@@ -71,17 +71,17 @@
 
     <h1 class="mx-1">All Posts</h1>
     {% if user.is_authenticated %}
-        <div class="postForm my-3 mx-4">
-            <h3>New Post</h3>
-            <form action="{% url 'newPost' %}" method="post">
+        <div class="postForm my-3 mx-3">
+            <h3 class="mx-2">New Post</h3>
+            <form class="formTextPost" action="{% url 'newPost' %}" method="post">
                 {% csrf_token %}
-                <textarea name="content" id="" cols="130" rows="4"></textarea>
+                <textarea name="content" id="formTextarea"></textarea>
                 <br>
                 <input type="submit" value="Post" class="btn btn-primary"/>
             </form>
         </div>
     {% endif %}
-    <div class="all-posts mx-3">
+    <div class="mx-3">
         {% for post in posts_on_the_page %}
             <div class="post">
                 <h5 class="username"><a href="{% url 'profile' user_id=post.user.id %}">@{{ post.user }}</a></h5>
@@ -89,7 +89,7 @@
                 <p class="date">{{ post.date }}</p>
                 {% if user.is_authenticated %}
                     {% if user == post.user %}
-                        <div class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-around ">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_post_{{ post.id }}">Edit</button>
                         </div>
                         <div class="modal fade" id="modal_edit_post_{{ post.id }}" tabindex="-1" aria-labelledby="modal_edit_post_{{ post.id }}" arial-hidden="true">
@@ -112,9 +112,9 @@
                     {% else %}
                           {% if post.id in whoYouLike %}
                           <!-- this means we already liked the post-->
-                            <button class="btn btn-info fa fa-thumbs-down col-1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
+                            <button class="btn btn-info fa fa-thumbs-down col-1 my-0.1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
                           {% else %}
-                            <button class="btn btn-info fa fa-thumbs-up col-1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
+                            <button class="btn btn-info fa fa-thumbs-up col-1 my-0.1" onclick="likeHandler('{{ post.id }}', '{{ whoYouLike }}')" id="{{ post.id }}"></button>
                           {% endif %}
                     {% endif %}
                 {% endif %}

@@ -122,7 +122,7 @@ def following(request):
     page_number = request.GET.get('page')
     posts_on_the_page = paginator.get_page(page_number)
 
-    return render(request, "network/followin.html", {
+    return render(request, "network/following.html", {
         "posts_on_the_page": posts_on_the_page
     })
 

@@ -1,16 +1,21 @@
-.all-posts{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    margin: 20px;
+
+
+.postForm {
+    border: 0.1px solid lightgray;
 }
 
-
-.post{
-    border: 0.1px solid gray;
-    box-sizing: border-box;
+.formTextPost {
+    align-items: center;
+    margin-left: 18px;
+    margin-bottom: 2px;
 }
 
-.postForm{
-    border: 0.1px solid grey;
+#formTextarea {
+    width: 90%;
+}
+
+.post {
+    border: 0.1px solid lightgray;
+    margin-bottom: 10px;
+    padding: 2px;
 }
