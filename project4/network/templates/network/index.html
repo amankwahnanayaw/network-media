@@ -9,7 +9,7 @@
     }
 
     function submitHandler(id) {
-        const textareaValue = document.getElementById(`textarea_${id}`).value
+        const textareaValue = document.getElementById(`textarea_${id}`).value;
         const content = document.getElementById(`content_${id}`);
         const modal = document.getElementById(`modal_edit_post_${id}`);
         fetch(`/edit/${id}`, {
@@ -71,7 +71,7 @@
 
     <h1 class="mx-1">All Posts</h1>
     {% if user.is_authenticated %}
-        <div class="my-3 mx-4">
+        <div class="postForm my-3 mx-4">
             <h3>New Post</h3>
             <form action="{% url 'newPost' %}" method="post">
                 {% csrf_token %}

@@ -10,3 +10,7 @@
     border: 0.1px solid gray;
     box-sizing: border-box;
 }
+
+.postForm{
+    border: 0.1px solid grey;
+}
